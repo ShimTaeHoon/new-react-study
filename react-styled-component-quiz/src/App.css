@@ -1,0 +1,14 @@
+.ul-nav {
+  display: grid;
+  /* 3개 -> 1:1:1 */
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+}
+
+.home-div {
+  background-color:aquamarine;
+}
+
+.active {
+  font-weight: bold;
+}
+
