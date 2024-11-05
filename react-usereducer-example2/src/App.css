@@ -1,9 +1,0 @@
-/* div를 flex 컨테이너로 지정 
-  자식요소들을 수평으로 배치
-  자식간의 간격을 3px로 설정
-*/
-.App {
-  display: flex;
-  flex-direction: row; /* 배치 방향 */
-  gap: 3px;
-}

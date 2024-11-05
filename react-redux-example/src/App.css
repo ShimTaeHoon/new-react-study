@@ -1,0 +1,10 @@
+.root, .root > div div { /* 자식의 자손 */
+  border: 5px solid red;
+  margin: 10px;
+}
+
+/* div를 grid컨테이너로 설정 */
+.root {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

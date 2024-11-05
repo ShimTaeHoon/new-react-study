@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 
+// 처음
+
 function Header(props) {
 
   return <header>

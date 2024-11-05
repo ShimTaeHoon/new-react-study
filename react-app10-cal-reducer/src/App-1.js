@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 
+// 삭제 기능 구현
+
 function Header(props) {
 
   return <header>
@@ -123,12 +125,29 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>
-    contextControl = <li>
-      <a href={'/update/' + id} onClick={event=>{
-        event.preventDefault();
-        setMode('UPDATE');
-      }}>Update</a>
-    </li>;
+    // 태그 여러개를 묶기 위해 빈태그를 하나 추가한다
+    // 빈 태그 안에 이동 링크를 넣고, 삭제 버튼을 추가한다 
+    contextControl = <>
+      <li>
+        <a href={'/update/' + id} onClick={event=>{
+          event.preventDefault();
+          setMode('UPDATE');
+        }}>Update</a>
+      </li>
+      <li>
+        {/* 현재 선택된 글을 삭제하기 위해 새로운 배열을 생성 */}
+        <input type='button' value='Delete' onClick={()=>{
+          const newTopics = [];
+          for(let i in topics){
+            if(topics[i].id !== id){
+              newTopics.push(topics[i]);
+            }
+          }
+          setTopics(newTopics); //topic 상태 업데이트
+          setMode('WELCOME'); //글을 삭제했기 때문에 웰컴페이지로 이동
+        }}></input>
+      </li>
+    </>
   } else if(mode === "CREATE") {
     
     content = <Create onCreate={(_title, _body)=>{
@@ -166,6 +185,8 @@ function App() {
     }}></Update>
   }
 
+  // 등록과 수정 기능은 페이지를 이동했지만
+  // 삭제는 누르자마자 삭제되기 때문에 버튼으로 생성한다
   return (
     <div className="App">
       <Header title="WEB" onChangeMode={function () {
@@ -185,6 +206,7 @@ function App() {
             setMode('CREATE');
             }}>Create</a>
         </li>
+        {/* 버튼의 위치는 contextControl 안에 포함시킨다 */}
         {contextControl}
       </ul>
     </div>
