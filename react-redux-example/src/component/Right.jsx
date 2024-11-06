@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 
 // useDispatch: 스토어에 있는 state를 변경하는 함수
+// (스토어에 있는 state를 변경하는 함수)
 
 export const Right1 = () => {
 
