@@ -1,48 +1,26 @@
 import './App.css';
 import Counter from './component/Counter';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-// Redux - 상태관리도구
+// redux -> redux toolkit 방식으로 변경!
 
-// createStore - 스토어 생성 함수
-// Provider - 스토어를 제공하는 함수
+// redux toolkit? redux + 부가기능
+// 1. 스토어를 기능별로 나눌 수 있음
+// 2. state의 불변성을 유지할 필요가 없음
 
-// state - num
+// toolkit으로 스토어를 만드는 방법
+// 카운터 슬라이스 생성 > 슬라이스를 모아서 스토어 생성
 
-// 스토어 만드는 방법
-// 리듀서 함수 정의 -> 스토어 생성 -> Provider 설정
+// 변경!
+// reducer + createStore => createSlice + configureStore
 
-// 1. 리듀서 함수 (상태변경로직)
-// 매개변수: 이전 state, 액션(명령과 작업에 필요한 데이터)
-// 리턴값: 새로운 state
-function reducer(oldState, action){
-  
-  // state 복제본 생성
-  let newState = { ...oldState };
-
-  // ... state를 변경하는 로직
-  if(action.type === 'UP'){
-    newState.num = newState.num + action.step;  // 원본 + 증가(2)
-    return newState;
-  }
-
-  return oldState;
-
-}
-
-// 2. 스토어 생성
-// 인자: 리듀서, state 초기값
-
-const initState = { num:0 };
-
-const store = createStore(reducer, initState);
-
+// Redux toolkit의 액션 함수 사용하기!
 
 function App() {
   return (
     <div>
-      {/* 3. 스토어가 필요한 곳에 Provider 설정 */}
+      {/* Provider로 앱에 스토어 주입 */}
       <Provider store={store}>
         <Counter></Counter>
       </Provider>
