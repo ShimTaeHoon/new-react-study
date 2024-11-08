@@ -10,7 +10,7 @@ export const CustomCard = styled.div`
   align-items: center;
   /* 크기 */
   width: 1150px;
-  height: 600px;
+  height: 700px;
   /* 여백 */
   padding: 24px;
   margin: 50px;

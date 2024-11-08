@@ -4,6 +4,10 @@ import Layout from './components/Layout';
 import Home from './features/Home';
 import Register from './features/Register';
 import Login from './features/Login';
+import BoardList from './features/BoardList';
+import BoardDetail from './features/BoardDetail';
+import BoardRegister from './features/BoardRegister';
+import BoardModify from './features/BoardModify';
 
 function App() {
 
@@ -13,7 +17,6 @@ function App() {
 
   return (
     <div>
-     
       <Routes>
         {/* 중첩 라우트 설정 */}
         {/* / 경로로 이동하면 Layout 컴포넌트가 렌더링 */}
@@ -23,6 +26,14 @@ function App() {
           <Route path="/" element={ <Home></Home> } ></Route>
           <Route path="/register" element={ <Register></Register> } ></Route>
           <Route path="/login" element={ <Login></Login> } ></Route>
+          {/* 게시물 관련 */}
+          <Route path="/board/list" element={ <BoardList></BoardList> } ></Route>
+          <Route path="/board/register" element={ <BoardRegister></BoardRegister> } ></Route>
+          {/* :no => URL 안에 포함되어 있는 파라미터 */}
+          {/* 이 자리에는 파라미터가 들어 올 수 있음 */}
+          {/* 예: /board/read/1 */}
+          <Route path="/board/read/:no" element={ <BoardDetail></BoardDetail> } ></Route>
+          <Route path="/board/modify/:no" element={ <BoardModify></BoardModify> } ></Route>
         </Route>
       </Routes>
     </div>
