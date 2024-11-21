@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { Context } from '../index';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // 해당 게시물 데이터를 출력
 // 제목과 내용은 수정 가능
@@ -15,6 +16,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 const BoardModify = () => {
 
   const navigate = useNavigate();
+
+  const token = useSelector((state)=>{
+    console.log(state.member.token);
+    return state.member.token;
+  });
 
   // 기존 게시물 데이터를 state에 저장
   let [board, setBoard] = useState(null);
@@ -36,7 +42,7 @@ const BoardModify = () => {
         `${host}/board/read?no=${params.no}`,
         {
           headers: { 
-            Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzIwNjIxMzIsImV4cCI6MTczNDY1NDEzMiwic3ViIjoidXNlciJ9.eo4baZsliRRVthY316YWWhr2ohpvOhxVGtlAnlfNKNo'
+            Authorization: token
           }
         }
       );
@@ -90,7 +96,7 @@ const BoardModify = () => {
       board,
       {
         headers: { 
-          Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzIwNzM4NjEsImV4cCI6MTczNDY2NTg2MSwic3ViIjoiYWRtaW4ifQ.LPn5xTe7vrURW6knF9HlO12faFI_3KGnVGH48mGAuIQ'
+          Authorization: token
         }
       }
     );
@@ -114,7 +120,7 @@ const BoardModify = () => {
       `${host}/board/remove?no=${board.no}`,
       {
         headers: { 
-          Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzIwNzM4NjEsImV4cCI6MTczNDY2NTg2MSwic3ViIjoiYWRtaW4ifQ.LPn5xTe7vrURW6knF9HlO12faFI_3KGnVGH48mGAuIQ'
+          Authorization: token
         }
       }
     );

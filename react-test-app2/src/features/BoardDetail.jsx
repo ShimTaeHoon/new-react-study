@@ -10,7 +10,20 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { Context } from '../index';
 
+import { useSelector } from 'react-redux';
+
 const BoardDetail = () => {
+
+  // 파일 경로
+  const IMG_PATH = 'C://uploadfile/'
+
+  // 스토어에서 token state를 가져오기
+  // const token = useSelector((state)=>{state.member.token});
+  const token = useSelector((state)=>{
+    return state.member.token;
+  });
+
+  console.log(token);
 
   // const board = { no:1, title:'1번', content:'1번입니다', writer:'둘리', regDate:'2024-11-08', modDate:'2024-11-08' }
 
@@ -41,7 +54,10 @@ const BoardDetail = () => {
           `${host}/board/read?no=${params.no}`,
           {
             headers: { 
-              Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzIwNjIxMzIsImV4cCI6MTczNDY1NDEzMiwic3ViIjoidXNlciJ9.eo4baZsliRRVthY316YWWhr2ohpvOhxVGtlAnlfNKNo'
+              // Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzIwNjIxMzIsImV4cCI6MTczNDY1NDEzMiwic3ViIjoidXNlciJ9.eo4baZsliRRVthY316YWWhr2ohpvOhxVGtlAnlfNKNo'
+
+              Authorization: token
+
             }
           }
         );
@@ -95,6 +111,8 @@ const BoardDetail = () => {
               <Form.Label>수정일</Form.Label>
               <Form.Control type="text" value={board.modDate} readOnly/>
             </Form.Group>
+
+            <img src={ `${IMG_PATH} ${board.imgPath}` }></img>
 
             <Button variant="primary" onClick={ ()=>{
        

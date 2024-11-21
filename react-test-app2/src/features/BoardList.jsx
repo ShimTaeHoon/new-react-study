@@ -13,6 +13,8 @@ import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { Context } from '../index';
 
+import { useSelector } from 'react-redux';
+
 
 // 게시물 리스트를 변수에 저장
 // 상수 키워드 => let으로 수정!!!
@@ -32,6 +34,12 @@ const BoardList = () => {
 
   // Context에서 host 데이터 가져오기
   const { host } = useContext(Context);
+  
+  const token = useSelector((state)=>{
+    
+    return state.member.token;
+    
+  });
 
   // 컴포넌트가 로드될때 한번만 API를 호출하기 위해 useEffect를 사용!
   // 인자: 실행할 코드, 실행 주기(빈배열은 한번만 실행한다는 의미)
@@ -47,7 +55,7 @@ const BoardList = () => {
           `${host}/board/list`,
           {
             headers: { 
-              Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzIwNjIxMzIsImV4cCI6MTczNDY1NDEzMiwic3ViIjoidXNlciJ9.eo4baZsliRRVthY316YWWhr2ohpvOhxVGtlAnlfNKNo'
+              Authorization: token
             }
           }
         );
