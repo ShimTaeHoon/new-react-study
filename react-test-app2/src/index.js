@@ -35,7 +35,23 @@ if(info !== null){
 }
 
 // API 서버 주소
-let host = 'http://localhost:8080';
+// let host = 'http://localhost:8080';
+
+// AWS API 주소로 변경
+// let host = 'http://ec2-43-203-192-152.ap-northeast-2.compute.amazonaws.com:8080';
+// let host = 'http://43.203.192.152:8080';
+
+// 로컬 컴퓨터에서 React App을 실행할 때는
+// API 주소도 localhost로 설정
+// 그렇지 않으면 (Netlify에서) AWS 서버로 설정
+let host;
+if(window.location.hostname === 'localhost'){
+  host = 'http://localhost:8080';
+} else {
+  host = 'http://43.203.192.152:8080';
+}
+
+console.log(host);
 
 // Router: URL 주소에따라 화면을 전환하는 기능
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -15,7 +15,9 @@ import { useSelector } from 'react-redux';
 const BoardDetail = () => {
 
   // 파일 경로
-  const IMG_PATH = 'C://uploadfile/'
+  // const IMG_PATH = 'C://uploadfile/'
+  // 파일 경로를 프로젝트 내부의 상대경로로 설정
+  const IMG_PATH = '/image/';
 
   // 스토어에서 token state를 가져오기
   // const token = useSelector((state)=>{state.member.token});
@@ -78,6 +80,9 @@ const BoardDetail = () => {
 
   },[]);
 
+  // 실제 파일은 존재하지만
+  // 브라우저 정책에 의해 프로젝트 외부 경로에 접근할 수 없음!
+
   return (
     <CustomCard>
       <CustomContainer>
@@ -112,7 +117,7 @@ const BoardDetail = () => {
               <Form.Control type="text" value={board.modDate} readOnly/>
             </Form.Group>
 
-            <img src={ `${IMG_PATH} ${board.imgPath}` }></img>
+           
 
             <Button variant="primary" onClick={ ()=>{
        
